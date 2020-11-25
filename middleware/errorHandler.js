@@ -9,12 +9,19 @@ const errorHandler = (handler) => {
 };
 
 const unknownRequests = (req, res, next) => {
-  const error = new Error('Not found');
+  const error = new Error('Route requested not found');
   error.status = 404;
   next(error);
 };
 
 const errorResponse = (error, req, res, next) => {
-  console.log(error.message);
+  if (error.status) {
+    console.log(error);
+    res.status(error.status).send({ message: `${error.message}... :(` });
+  } else {
+    console.log(error);
+    res.status(500).send({ message: 'Internal server error, please try again later... :(' });
+  }
 };
+
 module.exports = { errorHandler, unknownRequests, errorResponse };

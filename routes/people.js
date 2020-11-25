@@ -16,7 +16,7 @@ router.get(
   '/:name',
   errorHandler(async (req, res) => {
     const name = req.params.name;
-    const people = await Person.find({ name: is });
+    const people = await Person.find({ name: name });
 
     return res.status(200).send({ data: people });
   })
