@@ -1,10 +1,10 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const Person = require('../models/person');
-const { errorHandler } = require('../middleware/errorHandler');
+const Person = require("../models/person");
+const { errorHandler } = require("../middleware/errorHandler");
 
 router.get(
-  '/',
+  "/",
   errorHandler(async (req, res) => {
     const people = await Person.find();
 
@@ -13,7 +13,7 @@ router.get(
 );
 
 router.get(
-  '/:name',
+  "/:name",
   errorHandler(async (req, res) => {
     const name = req.params.name;
     const people = await Person.find({ name: name });
@@ -23,7 +23,7 @@ router.get(
 );
 
 router.post(
-  '/',
+  "/",
   errorHandler(async (req, res) => {
     const { name, last_name, age } = req.body;
 
